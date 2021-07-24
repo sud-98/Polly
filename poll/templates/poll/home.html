@@ -1,7 +1,27 @@
 {%  extends 'poll/base.html' %}
 
+{% block title %}Polly{% endblock %}
+
 {% block content %}
-	<div>
-		<h2>Latest Polls</h2>
-	</div>
-{% endblock content %}
+<div class="row ">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Latest Polls</h2>
+            </div>
+                
+            <ul class="list-group">
+            	{% for p in polls %}
+                <li class="list-group-item">
+                    <strong>{{ p.topic }}</strong>
+                    <span class="pull-right">
+                        <a href="{% url 'poll-vote' p.id %}" class="btn btn-info btn-xs">Vote</a> &nbsp;
+                        <a href="{% url 'poll-result' p.id %}" class="btn btn-default btn-xs">View Results</a> &nbsp;
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
